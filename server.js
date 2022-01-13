@@ -22,19 +22,15 @@ var checkRateLimit = require('./lib/rate-limit')(process.env.CORSANYWHERE_RATELI
 var cors_proxy = require('./lib/cors-anywhere');
 cors_proxy.createServer({
   setHeaders: {"origin": "https://www.twitch.tv"},
+  requireHeader: [],
   removeHeaders: [
-    'cookie',
-    'cookie2',
-    // Strip Heroku-specific headers
-    'x-request-start',
-    'x-request-id',
-    'via',
-    'connect-time',
-    'total-route-time',
-    // Other Heroku added debug headers
-    // 'x-forwarded-for',
-    // 'x-forwarded-proto',
-    // 'x-forwarded-port',
+      'cookie',
+      'cookie2',
+      // Strip Heroku-specific headers
+      'x-heroku-queue-wait-time',
+      'x-heroku-queue-depth',
+      'x-heroku-dynos-in-use',
+      'x-request-start'
   ],
   httpProxyOptions: {
     // Do not add X-Forwarded-For, etc. headers, because Heroku already adds it.
