@@ -21,7 +21,7 @@ var checkRateLimit = require('./lib/rate-limit')(process.env.CORSANYWHERE_RATELI
 
 var cors_proxy = require('./lib/cors-anywhere');
 cors_proxy.createServer({
-  setHeaders: {"rigin": "https://www.twitch.tv"},
+  setHeaders: {"origin": "https://www.twitch.tv"},
   removeHeaders: [
     'cookie',
     'cookie2',
